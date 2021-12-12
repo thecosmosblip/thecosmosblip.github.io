@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css" integrity="sha512-r/Gan7PMSRovDus++vDS2Ayutc/cSdl268u047n4z+k7GYuR7Hiw71FsT3QQxdKJBVHYttOJ6IGLnlM9IoMToQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <title>Weather App</title>
+</head>
+
+<body>
+
+    <nav class="navbar fixed-top side m-0 p-0">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a href="#">
+                    <img src="images/menu.png" class="navicon">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <img src="images/map-marker.png" class="navicon">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <img src="images/graph.png" class="navicon">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <img src="images/statistics.png" class="navicon">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <img src="images/calendar.png" class="navicon">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <img src="images/gear.png" class="navicon">
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col p-3 pt-4 ml-0 offset-lg-1">
+                <div id="dashboard">
+                    <div class="row mx-0 px-0">
+                        <div class="col mx-0 px-0">
+                            <h1 id="time" class="h1 mx-0 px-0">07:32 AM</h1>
+                        </div>
+                        <div class="col-auto mt-4">
+                            <div class="toggle-button-cover">
+                                <div class="button-cover">
+                                    <div class="button toggle-switch" id="theme-switch">
+                                        <input type="checkbox" class="checkbox">
+                                        <div class="knobs">
+                                            <span><i class="fa fa-sun-o"></i></span>
+                                        </div>
+                                        <div class="layer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0 px-0">
+                        <div id="cdate" class="h6 mx-0 px-0">Wednesday, 14 April, 2021</div>
+                        <h2 class="h2 mt-3 mx-0 px-0"><i class="wi wi-day-sunny"></i> Good morning, Sanket!</h2>
+                    </div>
+
+                    <div class="row mx-0 my-2 px-0 justify-content-between">
+                        <div class="weather-card text-center col">
+                            <img id="wi0">
+                            <h6>Sun</h6>
+                            <h6 id="wt0">28°</h6>
+                        </div>
+                        <div class="weather-card text-center col">
+                            <img id="wi1">
+                            <h6>Mon</h6>
+                            <h6 id="wt1">17°</h6>
+                        </div>
+                        <div class="weather-card text-center col">
+                            <img id="wi2">
+                            <h6>Tue</h6>
+                            <h6 id="wt2">20°</h6>
+                        </div>
+                        <div class="weather-card text-center col current-day">
+                            <img id="wi3">
+                            <h6>Wed</h6>
+                            <h6 id="wt3">29°</h6>
+                        </div>
+                        <div class="weather-card text-center col">
+                            <img id="wi4">
+                            <h6>Thu</h6>
+                            <h6 id="wt4">22°</h6>
+                        </div>
+                        <div class="weather-card text-center col">
+                            <img id="wi5">
+                            <h6>Fri</h6>
+                            <h6 id="wt5">16°</h6>
+                        </div>
+                        <div class="weather-card text-center col">
+                            <img id="wi6">
+                            <h6>Sat</h6>
+                            <h6 id="wt6">21°</h6>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-start">
+                        <div class="col">
+                            <div class="row m-0 p-0 mt-3">
+                                <div id="air-quality-index" class=" container cd px-4 py-3">
+                                    <div class="row mb-3">
+                                        <h5 class="h5 col">Air Quality Index</h5>
+                                        <div class="col-auto blue mr-0 px-0"><i class="fa fa-map-marker blue"></i></div>
+                                        <div class="col-auto text-end gray-text city mx-0 pl-0">Delhi</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <i class="wi wi-strong-wind h4 col-1 m-2 aqa"></i>
+                                        <div class="col">
+                                            <div id="aqr" class="h6 aqa">Good</div>
+                                            <div id="aqd" class="gray-text">A perfect day for a walk!</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn" onclick="refreshAQI()">Refresh</button>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-around">
+                                        <div class="air-card col">
+                                            <h5 id="ac0">9.3</h5>
+                                            <h6>PM<sub>2.5</sub></h6>
+                                        </div>
+                                        <div class="air-card col">
+                                            <h5 id="ac1">12.2</h5>
+                                            <h6>PM<sub>10</sub></h6>
+                                        </div>
+                                        <div class="air-card col">
+                                            <h5 id="ac2">4.8</h5>
+                                            <h6>SO<sub>2</sub></h6>
+                                        </div>
+                                        <div class="air-card col">
+                                            <h5 id="ac3">4.6</h5>
+                                            <h6>NO<sub>2</sub></h6>
+                                        </div>
+                                        <div class="air-card col">
+                                            <h5 id="ac4">6.5</h5>
+                                            <h6>O<sub>3</sub></h6>
+                                        </div>
+                                        <div class="air-card col">
+                                            <h5 id="ac5">0.9</h5>
+                                            <h6>CO</h6>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="monthly-rainfall" class="container cd px-4 py-3 mt-3">
+                                    <div class="row mb-4">
+                                        <h5 class="h5 col">Monthly Rainfall</h5>
+                                        <div class="col-auto gray-text">
+                                            <i class="fa fa-square blue"></i> Rain
+                                        </div>
+                                        <div class="col-auto gray-text">
+                                            <i class="fa fa-square yellow"></i> Sun
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-around">
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-1" class="bar">
+                                                <div class="rain-fill" style="height: 15%;"></div>
+                                                <div class="sun-fill" style="height: 50%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-2" class="bar">
+                                                <div class="rain-fill" style="height: 50%;"></div>
+                                                <div class="sun-fill" style="height: 30%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-3" class="bar">
+                                                <div class="rain-fill" style="height: 20%;"></div>
+                                                <div class="sun-fill" style="height: 40%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-4" class="bar">
+                                                <div class="rain-fill" style="height: 10%;"></div>
+                                                <div class="sun-fill" style="height: 40%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-5" class="bar">
+                                                <div class="rain-fill" style="height: 40%;"></div>
+                                                <div class="sun-fill" style="height: 50%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-6" class="bar">
+                                                <div class="rain-fill" style="height: 25%;"></div>
+                                                <div class="sun-fill" style="height: 35%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-7" class="bar">
+                                                <div class="rain-fill" style="height: 25%;"></div>
+                                                <div class="sun-fill" style="height: 65%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-8" class="bar">
+                                                <div class="rain-fill" style="height: 15%;"></div>
+                                                <div class="sun-fill" style="height: 35%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-9" class="bar">
+                                                <div class="rain-fill" style="height: 50%;"></div>
+                                                <div class="sun-fill" style="height: 15%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-10" class="bar">
+                                                <div class="rain-fill" style="height: 40%;"></div>
+                                                <div class="sun-fill" style="height: 40%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-11" class="bar">
+                                                <div class="rain-fill" style="height: 30%;"></div>
+                                                <div class="sun-fill" style="height: 30%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <div id="mr-bar-12" class="bar">
+                                                <div class="rain-fill" style="height: 60%;"></div>
+                                                <div class="sun-fill" style="height: 30%;"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div id="sunrise-sunset" class="container cd px-3 py-3 mt-3">
+                                <div class="row mb-3">
+                                    <h5 class="h5 col">Sunrise &amp; Sunset</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xl-3 p-3 m-0 text-center sticky-top side-lg side-panel">
+                <div class="row justify-content-end d-flex flex-nowrap">
+                    <div class="col my-auto">
+                        <div class="search gray-text d-flex flex-nowrap align-content-center">
+                            <button id="sb" onclick="search()" class="btn btn-light m-0 p-1"><i class="fa fa-search h5 my-auto m-1 p-1"></i></button>
+                            <input id="searchCity" nametype="text" placeholder="Search" class="search-input form-control">
+                            <i class="fa fa-map-marker h6 ci-b my-auto m-1"></i>
+                        </div>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <i class="fa fa-bell-o gray-text h6"></i>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <img src="images/sanket.jpg" class="avatar">
+                    </div>
+                </div>
+                <div class="row w-card m-3 mx-auto white-text p-3 pb-4 text-center" style="background-image: url(images/bg-1.png); background-color:#6991F3;">
+                    <div class="h5" style="text-align: left;">
+                        <i class="fa fa-map-marker"></i>&nbsp;<span id="wc0">Dhaka</span>
+                    </div>
+                    <img id="wic">
+                    <div id="dcc">Today, 14 April</div>
+                    <div id="wit0" style="font-size: 48pt; padding: 0px;">29°</div>
+                    <div id="wrc" class="mb-2">Sunny</div>
+                    <div class="row justify-content-around mx-auto">
+                        <div class="col-5 justify-content-end">
+                            <i class="wi wi-strong-wind"></i> Wind
+                        </div>
+                        <div class="col-1">|</div>
+                        <div id="ws0" class="col-5 justify-content-start">19km/h</div>
+                    </div>
+                    <div class="row justify-content-around mx-auto">
+                        <div class="col-5 justify-content-end">
+                            <i class="wi wi-raindrop"></i> Hum
+                        </div>
+                        <div class="col-1">|</div>
+                        <div id="hm0" class="col-5 justify-content-start">22%</div>
+                    </div>
+                </div>
+                <div class="row w-card mt-3 mx-auto white-text p-2" onclick="revertTo(this)" style="background-image: url(images/bg-3.png); background-color: #FF6AA1;">
+                    <div class="row m-0 p-0 justify-content-between">
+                        <div class="col-7 my-auto" style="white-space: nowrap; text-align: left;">
+                            <div><i class="wi wi-strong-wind"></i> Wind |&nbsp;<span id="ws1">15km/h</span></div>
+                            <div><i class="wi wi-raindrop"></i> &nbsp;&nbsp;&nbsp;Hum&nbsp; |&nbsp;<span id="hm1">28%</span></div>
+                        </div>
+                        <div class="col-5 text-end">
+                            <div class="h5">
+                                <i class="fa fa-map-marker"></i>&nbsp;<span id="wc1" class="ciwt">Tokyo</span>
+                            </div>
+                            <div id="wit1" style="font-size: 28pt;">26°</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row w-card mt-3 mx-auto white-text p-2" onclick="revertTo(this)" style="background-image: url(images/bg-2.png); background-color: #F9BB74;">
+                    <div class="row m-0 p-0 justify-content-between">
+                        <div class="col-7 justify-content-start my-auto" style="white-space: nowrap; text-align: left;">
+                            <div><i class="wi wi-strong-wind"></i> Wind |&nbsp;<span id="ws2">17km/h</span></div>
+                            <div><i class="wi wi-raindrop"></i> &nbsp;&nbsp;&nbsp;Hum&nbsp; |&nbsp;<span id="hm2">25%</span></div>
+                        </div>
+                        <div class="col-5 text-end">
+                            <div class="h5">
+                                <i class="fa fa-map-marker"></i>&nbsp;<span id="wc2" class="ciwt">NY</span>
+                            </div>
+                            <div id="wit2" style="font-size: 28pt;">31°</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
